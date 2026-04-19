@@ -96,6 +96,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="fractalspawner.h" />
     <ClInclude Include="Organism.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Tile.h" />
