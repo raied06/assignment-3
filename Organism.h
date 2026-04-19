@@ -12,7 +12,6 @@ protected:
 	world* owner;
     void allocateShape(int h, int w, bool fillTrue = true);
     void deallocateShape();
-    void resizeShape(int newW, int newH, bool fillTrue = true);
 
 public:
     organism(int startX, int startY, int w, int h, world* worldPtr);
@@ -20,6 +19,7 @@ public:
 
     virtual void update(tile** world, int worldWidth, int worldHeight) = 0;
 
+    void resizeShape(int newWidth, int newHeight, bool fillTrue = true);
     float getAverageNutrients(tile** world, int worldWidth, int worldHeight);
     float getAverageToxicity(tile** world, int worldWidth, int worldHeight);
 
@@ -36,4 +36,6 @@ public:
 
     virtual bool isHunter() const = 0;
     virtual bool isSprawler() const = 0;
+
+    virtual char getSymbol() const = 0;
 };

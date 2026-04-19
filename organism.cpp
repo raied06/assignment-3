@@ -1,3 +1,4 @@
+#include"pch.h"
 #include "Organism.h"
 #include "world.h"
 #include "Tile.h"
@@ -10,7 +11,7 @@ organism::organism(int startX, int startY, int w, int h, world* worldPtr) {
     height = h;
     owner = worldPtr;
     alive = true;
-    internalShape = 0;
+    internalShape = nullptr;
     allocateShape(height, width, true);
 }
 //destrucotr
@@ -21,11 +22,12 @@ organism::~organism()
 //give organism a new shape
 void organism::allocateShape(int h, int w, bool fillTrue) {
     if (h <= 0 || w <= 0) {
-        internalShape = 0;
+        internalShape = nullptr;
         return;
     }
     internalShape = new bool* [h];
     for (int i = 0; i < h; i++) {
+        internalShape[i] = new bool[w];
         for (int j = 0; j < w; j++) {
             internalShape[i][j] = fillTrue; //fill shape with true 
         }
@@ -42,10 +44,10 @@ void organism::deallocateShape() {
     internalShape = nullptr;
 }
 //make shape bigger/smaller
-void organism::resizeShape(int newW, int newH, bool fillTrue) {
+void organism::resizeShape(int newWidth, int newHeight, bool fillTrue) {
     deallocateShape();
-    width = newW;
-    height = newH;
+    width = newWidth;
+    height = newHeight;
     if (width <= 0 || height <= 0) {
         width = 0;
         height = 0;
@@ -115,10 +117,22 @@ void organism::kill() {
     alive = false;
 }
 //getters
-int organism::getX() const { return x; }
-int organism::getY() const { return y; }
-int organism::getWidth() const { return width; }
-int organism::getHeight() const { return height; }
+int organism::getX() const 
+{ 
+    return x; 
+}
+int organism::getY() const 
+{ 
+    return y; 
+}
+int organism::getWidth() const 
+{ 
+    return width;
+}
+int organism::getHeight() const 
+{ 
+    return height; 
+}
 //update position
 void organism::setPosition(int newX, int newY) {
     x = newX;
