@@ -4,10 +4,6 @@ struct tile {
 	float nutrientLevel;
 	float toxicity;
 	organism* occupant;
-	tile() {
-		nutrientLevel = 50.0;
-		toxicity = 0.0;
-		occupant = 0;
 
-	}
+	tile() : nutrientLevel(50.0f), toxicity(0.0f), occupant(nullptr){}
 };
